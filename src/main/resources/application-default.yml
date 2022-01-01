@@ -12,4 +12,4 @@ okta:
 datasource:
   url: jdbc:mysql://localhost:3306/danceagent?zeroDateTimeBehavior=CONVERT_TO_NULL
   user: root
-  password: ^Free90Bird^
+  password: wannabet
