@@ -45,12 +45,12 @@ public class Availability implements Serializable {
     
     @Column(name = "start_time")
     @Temporal(TemporalType.TIMESTAMP)
-    @JsonFormat(pattern = "MM/dd/yyyy hh:mm a")
+    @JsonFormat(timezone = "UTC")
     private Date startTime;
     
     @Column(name = "end_time")
     @Temporal(TemporalType.TIMESTAMP)
-    @JsonFormat(pattern = "MM/dd/yyyy hh:mm a")
+    @JsonFormat(timezone = "UTC")
     private Date endTime;
     
     @Column(name = "dance_limit")
@@ -58,7 +58,7 @@ public class Availability implements Serializable {
 
     @Column(name = "created_timestamp")
     @Temporal(TemporalType.TIMESTAMP)
-    @JsonFormat(pattern = "MM/dd/yyyy hh:mm a")
+    @JsonFormat(timezone = "UTC")
     private Date created;
 
     /**
