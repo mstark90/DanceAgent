@@ -16,8 +16,7 @@ CREATE TABLE availability
      start_time TIMESTAMP NOT NULL,
      end_time TIMESTAMP NOT NULL,
      dance_limit INT NOT NULL DEFAULT -1,
-     created_timestamp TIMESTAMP NOT NULL DEFAULT NOW(),
-     FOREIGN KEY (user_id) REFERENCES users (user_id));
+     created_timestamp TIMESTAMP NOT NULL DEFAULT NOW());
 
 CREATE TABLE dance_requests
     (dance_request_id BIGINT NOT NULL PRIMARY KEY AUTO_INCREMENT,
