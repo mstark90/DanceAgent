@@ -1,0 +1,15 @@
+spring:
+  config:
+    activate:
+      on-profile: prod
+
+okta:
+  oauth2:
+    issuer: https://dev-00327502.okta.com/oauth2/default
+    client-id: 0oa3eu8m79HimDYhO5d7
+    pkce-always: true
+
+datasource:
+  url: jdbc:mysql://db:3306/danceagent?zeroDateTimeBehavior=CONVERT_TO_NULL
+  user: root
+  password: ${DB_PASSWORD}

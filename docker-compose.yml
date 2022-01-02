@@ -1,0 +1,23 @@
+version: "3.8"
+
+services:
+    danceagent-api:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        ports:
+            - "8080:8080"
+        environment:
+            - "DB_PASSWORD=${DB_ROOT_PASSWORD}"
+            - "SPRING_PROFILES_ACTIVE=prod"
+        deploy:
+            labels:
+                - "traefik.http.services.danceagent-api.loadbalancer.server.port=8080"
+    db:
+        image: mariadb:10.7.1
+        volumes:
+            - ./src/main/resources/schema.sql:/docker-entrypoint-initdb.d/init.sql
+        environment:
+            MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+            MYSQL_DATABASE: danceagent
+    
