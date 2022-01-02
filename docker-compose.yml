@@ -13,6 +13,7 @@ services:
         labels:
             - "traefik.http.services.danceagent-api.loadbalancer.server.port=8080"
             - "traefik.http.routers.danceagent-api.rule=PathPrefix(`/danceagent-api`)"
+            - "traefik.docker.network=traefik_default"
         networks:
             - traefik_default
             - internal
