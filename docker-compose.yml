@@ -13,7 +13,7 @@ services:
             - "traefik.http.routers.api.rule=PathPrefix(`/danceagent-api`)"
             - "traefik.http.routers.api.service=danceagent-api-danceagent@docker"
         networks:
-            - internal
+            - bridge
             - web
         depends_on:
             - db
@@ -28,7 +28,7 @@ services:
             - internal
 
 networks:
-  web:
+  bridge:
     external: true
   internal:
     external: false
