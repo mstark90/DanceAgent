@@ -14,7 +14,7 @@ services:
             - "traefik.http.routers.api.service=danceagent-api-danceagent@docker"
         networks:
             - bridge
-            - web
+            - internal
         depends_on:
             - db
     db:
