@@ -12,9 +12,9 @@ services:
             - "8080"
         labels:
             - "traefik.http.services.danceagent-api.loadbalancer.server.port=8080"
-            - "traefik.http.routers.danceagent-api.rule=Path(`/danceagent-api`)"
+            - "traefik.http.routers.danceagent-api.rule=PathPrefix(`/danceagent-api`)"
         networks:
-            - web
+            - traefik_default
             - internal
         depends_on:
             - db
@@ -29,8 +29,8 @@ services:
             - internal
 
 networks:
-  web:
-    driver: bridge
+  traefik_default:
+    external: true
   internal:
     external: false
     
