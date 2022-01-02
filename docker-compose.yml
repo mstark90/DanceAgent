@@ -10,6 +10,13 @@ services:
             - "SPRING_PROFILES_ACTIVE=prod"
         labels:
             - "traefik.http.services.danceagent-api.loadbalancer.server.port=8080"
+            - "traefik.http.routers.api.rule=PathPrefix(`/danceagent-api`)"
+            - "traefik.http.routers.api.service=danceagent-api-danceagent@docker"
+        networks:
+            - internal
+            - web
+        depends_on:
+            - db
     db:
         image: mariadb:10.7.1
         volumes:
@@ -17,4 +24,12 @@ services:
         environment:
             MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
             MYSQL_DATABASE: danceagent
+        networks:
+            - internal
+
+networks:
+  web:
+    external: true
+  internal:
+    external: false
     
