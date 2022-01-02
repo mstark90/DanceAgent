@@ -8,6 +8,8 @@ services:
         environment:
             - "DB_PASSWORD=${DB_ROOT_PASSWORD}"
             - "SPRING_PROFILES_ACTIVE=prod"
+        ports:
+            - "8080"
         labels:
             - "traefik.http.services.danceagent-api.loadbalancer.server.port=8080"
             - "traefik.http.routers.danceagent-api.rule=PathPrefix(`/danceagent-api`)"
