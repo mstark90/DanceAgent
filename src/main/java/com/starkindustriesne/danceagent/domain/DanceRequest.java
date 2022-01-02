@@ -9,6 +9,8 @@ import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -40,6 +42,10 @@ public class DanceRequest implements Serializable {
     @Column(name = "created")
     @Temporal(TemporalType.TIMESTAMP)
     private Date created;
+    
+    @Column(name="dance_status")
+    @Enumerated(EnumType.ORDINAL)
+    private DanceStatus status;
 
     /**
      * @return the danceRequestId
@@ -89,5 +95,19 @@ public class DanceRequest implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    /**
+     * @return the status
+     */
+    public DanceStatus getStatus() {
+        return status;
+    }
+
+    /**
+     * @param status the status to set
+     */
+    public void setStatus(DanceStatus status) {
+        this.status = status;
     }
 }

@@ -26,6 +26,21 @@ public class DanceManagerService {
         this.availabilityRepository = availabilityRepository;
         this.danceRequestRepository = danceRequestRepository;
     }
+    
+    public DanceRequest update(Long availabilityId, DanceRequest request) {
+        Optional<Availability> availabilityRequest = this.availabilityRepository.findByAvailabilityId(availabilityId);
+        Availability availability = availabilityRequest.orElse(null);
+
+        if(availabilityRequest.isEmpty()) {
+            throw new BadRequestException(GlobalConstants.NOT_AVAILABLE_MSG);
+        }
+        
+        request.setAvailability(availability);
+        
+        request = this.danceRequestRepository.save(request);
+        
+        return request;
+    }
 
     public DanceRequest book(BookDanceRequest request) {
         Optional<Availability> availabilityRequest = this.availabilityRepository.findByAvailabilityId(request.getAvailabilityId());
