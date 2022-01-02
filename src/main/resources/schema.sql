@@ -24,3 +24,6 @@ CREATE TABLE dance_requests
      requestor_name VARCHAR(255) NOT NULL,
      created TIMESTAMP NOT NULL,
      FOREIGN KEY (availability_id) REFERENCES availability (availability_id));
+
+ALTER TABLE dance_requests
+    ADD COLUMN dance_status INT NOT NULL DEFAULT 0;
