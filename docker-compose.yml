@@ -28,8 +28,6 @@ services:
             - internal
 
 networks:
-  bridge:
-    external: true
   internal:
     external: false
     
