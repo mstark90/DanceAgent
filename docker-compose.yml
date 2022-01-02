@@ -10,8 +10,8 @@ services:
             - "SPRING_PROFILES_ACTIVE=prod"
         labels:
             - "traefik.http.services.danceagent-api.loadbalancer.server.port=8080"
-            - "traefik.http.routers.api.rule=PathPrefix(`/danceagent-api`)"
-            - "traefik.http.routers.api.service=danceagent-api-danceagent@docker"
+            - "traefik.http.routers.danceagent-api.rule=PathPrefix(`/danceagent-api`)"
+            - "traefik.http.routers.danceagent-api.service=danceagent-api@docker"
         networks:
             - web
             - internal
