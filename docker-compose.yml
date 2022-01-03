@@ -25,7 +25,6 @@ services:
         image: mariadb:10.7.1
         volumes:
             - ./src/main/resources/schema.sql:/docker-entrypoint-initdb.d/init.sql
-        volumes:
             - danceagent-storage:/var/lib/mysql
         environment:
             MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
