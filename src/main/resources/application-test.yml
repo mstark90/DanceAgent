@@ -10,6 +10,6 @@ okta:
     pkce-always: true
 
 datasource:
-  url: jdbc:mysql://db:3306/danceagent?zeroDateTimeBehavior=CONVERT_TO_NULL
+  url: jdbc:mysql://host.docker.internal:3306/danceagent?zeroDateTimeBehavior=CONVERT_TO_NULL
   user: ${DB_USER}
   password: ${DB_PASSWORD}

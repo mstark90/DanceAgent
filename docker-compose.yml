@@ -6,8 +6,9 @@ services:
             context: .
             dockerfile: Dockerfile
         environment:
-            - "DB_PASSWORD=${DB_ROOT_PASSWORD}"
-            - "SPRING_PROFILES_ACTIVE=prod"
+            - "DB_USER=danceagent"
+            - "DB_PASSWORD=${DB_PASSWORD}"
+            - "SPRING_PROFILES_ACTIVE=${ACTIVE_PROFILE}"
         ports:
             - "8080"
         labels:
@@ -21,19 +22,6 @@ services:
             - internal
         depends_on:
             - db
-    db:
-        image: mariadb:10.7.1
-        volumes:
-            - ./src/main/resources/schema.sql:/docker-entrypoint-initdb.d/init.sql
-            - danceagent-storage:/var/lib/mysql
-        environment:
-            MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
-            MYSQL_DATABASE: danceagent
-        networks:
-            - internal
-
-volumes:
-  danceagent-storage:
 
 networks:
   traefik_default:
