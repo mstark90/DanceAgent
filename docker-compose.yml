@@ -20,8 +20,6 @@ services:
         networks:
             - traefik_default
             - internal
-        depends_on:
-            - db
 
 networks:
   traefik_default:
