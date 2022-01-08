@@ -4,6 +4,7 @@ import com.starkindustriesne.danceagent.BadRequestException;
 import com.starkindustriesne.danceagent.GlobalConstants;
 import com.starkindustriesne.danceagent.domain.Availability;
 import com.starkindustriesne.danceagent.domain.DanceRequest;
+import com.starkindustriesne.danceagent.domain.DanceStatus;
 import com.starkindustriesne.danceagent.dto.BookDanceRequest;
 import com.starkindustriesne.danceagent.repositories.AvailabilityRepository;
 import com.starkindustriesne.danceagent.repositories.DanceRequestRepository;
@@ -61,6 +62,7 @@ public class DanceManagerService {
         danceRequest.setCreated(new Date());
         danceRequest.setName(request.getName());
         danceRequest.setAvailability(availability);
+        danceRequest.setStatus(DanceStatus.REQUESTED);
 
         danceRequest = this.danceRequestRepository.save(danceRequest);
 
