@@ -20,6 +20,8 @@ services:
         networks:
             - traefik_default
             - internal
+        extra_hosts:
+            - "host.docker.internal:host-gateway"
 
 networks:
   traefik_default:
