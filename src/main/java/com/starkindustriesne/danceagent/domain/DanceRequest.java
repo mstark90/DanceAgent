@@ -5,6 +5,8 @@
  */
 package com.starkindustriesne.danceagent.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Column;
@@ -36,11 +38,18 @@ public class DanceRequest implements Serializable {
     @JoinColumn(name = "availability_id", referencedColumnName = "availability_id")
     private Availability availability;
 
-    @Column(name = "requestor_name", length = 255)
-    private String name;
+    @Column(name = "first_name", length = 100)
+    private String firstName;
+
+    @Column(name = "last_name", length = 100)
+    private String lastName;
+
+    @Column(name = "email_address", length = 200)
+    private String emailAddress;
     
     @Column(name = "created")
     @Temporal(TemporalType.TIMESTAMP)
+    @JsonFormat(timezone = "UTC")
     private Date created;
     
     @Column(name="dance_status")
@@ -89,14 +98,6 @@ public class DanceRequest implements Serializable {
         this.availability = availability;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     /**
      * @return the status
      */
@@ -109,5 +110,29 @@ public class DanceRequest implements Serializable {
      */
     public void setStatus(DanceStatus status) {
         this.status = status;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getEmailAddress() {
+        return emailAddress;
+    }
+
+    public void setEmailAddress(String emailAddress) {
+        this.emailAddress = emailAddress;
     }
 }

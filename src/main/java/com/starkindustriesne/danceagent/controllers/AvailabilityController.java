@@ -46,13 +46,8 @@ public class AvailabilityController {
     public List<DanceRequest> getDancesForAvailability(@PathVariable Long availabilityId) {
         return this.danceManagerService.getByAvailabilityId(availabilityId);
     }
-    
-    @PostMapping("/{availabilityId}/dances")
-    public DanceRequest updateDance(@PathVariable Long availabilityId, @RequestBody DanceRequest request) {
-        return this.danceManagerService.update(availabilityId, request);
-    }
 
-    @PostMapping("/{availabilityId}/book")
+    @PostMapping("/{availabilityId}/dances")
     public DanceRequest bookRequest(@PathVariable Long availabilityId, @RequestBody BookDanceRequest request) {
         request.setAvailabilityId(availabilityId);
         return this.danceManagerService.book(request);

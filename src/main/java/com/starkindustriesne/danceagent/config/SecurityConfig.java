@@ -17,7 +17,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         http
                 .authorizeRequests()
-                .antMatchers(HttpMethod.POST, "/availability/**/book").permitAll()
+                .antMatchers(HttpMethod.POST, "/availability/**/dances").permitAll()
                 .antMatchers("/availability/current").permitAll()
                 .antMatchers(HttpMethod.OPTIONS).permitAll()
                 // Require authentication for all requests under /api/private

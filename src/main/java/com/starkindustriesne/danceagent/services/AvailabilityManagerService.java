@@ -15,7 +15,7 @@ import java.util.Optional;
 import java.util.logging.Logger;
 
 @Service
-public class AvailabilityManagerService {
+public class AvailabilityManagerService extends DanceAgentService {
     private static final Logger LOGGER = Logger.getLogger(AvailabilityManagerService.class.getName());
 
     private final AvailabilityRepository availabilityRepository;
@@ -24,18 +24,11 @@ public class AvailabilityManagerService {
         this.availabilityRepository = availabilityRepository;
     }
 
-    private Jwt getUser() {
-        return (Jwt)SecurityContextHolder.getContext()
-                .getAuthentication().getPrincipal();
-    }
-
     public Availability create(CreateAvailabilityRequest request) {
-        Jwt user = getUser();
-
         Availability availability = new Availability();
 
-        availability.setUserId(user.getClaimAsString("uid"));
-        availability.setDancerName(user.getClaimAsString("name"));
+        availability.setUserId(getCurrentUserId());
+        availability.setDancerName(getCurrentUserName());
         availability.setLocation(request.getLocation());
         availability.setStartTime(request.getStartTime());
         availability.setEndTime(request.getEndTime());
@@ -56,9 +49,7 @@ public class AvailabilityManagerService {
     }
 
     public List<Availability> findByCurrentUser() {
-        Jwt user = getUser();
-
-        return this.findByUserId(user.getClaimAsString("uid"));
+        return this.findByUserId(getCurrentUserId());
     }
 
     public List<Availability> findByUserId(String userId) {

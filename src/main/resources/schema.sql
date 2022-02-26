@@ -27,3 +27,11 @@ CREATE TABLE dance_requests
 
 ALTER TABLE dance_requests
     ADD COLUMN dance_status INT NOT NULL DEFAULT 0;
+
+ALTER TABLE dance_requests
+    RENAME COLUMN requestor_name TO first_name;
+
+ALTER TABLE dance_requests
+    MODIFY COLUMN first_name VARCHAR(100) NOT NULL,
+    ADD COLUMN last_name VARCHAR(100) NOT NULL,
+    ADD COLUMN email_address VARCHAR(200) NOT NULL;

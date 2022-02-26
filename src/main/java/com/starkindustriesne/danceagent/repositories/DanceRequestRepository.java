@@ -8,7 +8,10 @@ package com.starkindustriesne.danceagent.repositories;
 import com.starkindustriesne.danceagent.domain.Availability;
 import com.starkindustriesne.danceagent.domain.DanceRequest;
 
+import java.util.Collection;
 import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
@@ -17,6 +20,10 @@ import org.springframework.stereotype.Repository;
  * @author mstark
  */
 @Repository
-public interface DanceRequestRepository extends CrudRepository<DanceRequest, Long> {
+public interface DanceRequestRepository extends CrudRepository<DanceRequest, Long>,
+        JpaSpecificationExecutor<DanceRequest> {
     List<DanceRequest> findByAvailability(Availability avail);
+
+    List<DanceRequest> findAllByAvailabilityIn(Collection<Availability> availabilities);
+
 }
