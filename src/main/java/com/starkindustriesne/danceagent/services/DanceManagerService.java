@@ -2,6 +2,7 @@ package com.starkindustriesne.danceagent.services;
 
 import com.starkindustriesne.danceagent.BadRequestException;
 import com.starkindustriesne.danceagent.GlobalConstants;
+import com.starkindustriesne.danceagent.NotFoundException;
 import com.starkindustriesne.danceagent.domain.*;
 import com.starkindustriesne.danceagent.dto.BookDanceRequest;
 import com.starkindustriesne.danceagent.repositories.AvailabilityRepository;
@@ -82,6 +83,16 @@ public class DanceManagerService extends DanceAgentService {
         }
 
         return this.danceRequestRepository.findByAvailability(availability);
+    }
+
+    public DanceRequest getById(Long danceRequestId) {
+        Optional<DanceRequest> danceRequestResp = this.danceRequestRepository.findById(danceRequestId);
+
+        if(danceRequestResp.isEmpty()) {
+            throw new NotFoundException();
+        }
+
+        return danceRequestResp.get();
     }
 
     public List<DanceRequest> getForCurrentUser() {

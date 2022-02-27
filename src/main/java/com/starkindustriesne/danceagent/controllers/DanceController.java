@@ -1,7 +1,6 @@
 package com.starkindustriesne.danceagent.controllers;
 
 import com.starkindustriesne.danceagent.domain.DanceRequest;
-import com.starkindustriesne.danceagent.domain.DanceSpecification;
 import com.starkindustriesne.danceagent.services.DanceManagerService;
 import org.jboss.logging.Logger;
 import org.springframework.web.bind.annotation.*;
@@ -28,6 +27,11 @@ public class DanceController {
     @GetMapping("/search")
     public List<DanceRequest> search(@RequestParam(name = "query") String query) {
         return this.danceManagerService.search(query);
+    }
+
+    @GetMapping("/{danceId}")
+    public DanceRequest getById(@PathVariable Long danceId) {
+        return this.danceManagerService.getById(danceId);
     }
 
     @PostMapping("/{danceId}")
